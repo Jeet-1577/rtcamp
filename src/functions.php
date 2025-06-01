@@ -8,7 +8,20 @@
  */
 function addTask( string $task_name ): bool {
 	$file  = __DIR__ . '/tasks.txt';
-	// TODO: Implement this function
+	
+	// Check if task already exists to prevent duplicates
+	$existing_tasks = getAllTasks();
+	foreach ($existing_tasks as $task) {
+		if (trim($task['name']) === trim($task_name)) {
+			return false; // Duplicate task
+		}
+	}
+	
+	// Generate unique ID
+	$task_id = uniqid();
+	$task_data = $task_id . '|' . $task_name . '|0' . PHP_EOL; // 0 = not completed
+	
+	return file_put_contents($file, $task_data, FILE_APPEND | LOCK_EX) !== false;
 }
 
 /**
@@ -18,7 +31,26 @@ function addTask( string $task_name ): bool {
  */
 function getAllTasks(): array {
 	$file = __DIR__ . '/tasks.txt';
-	// TODO: Implement this function
+	
+	if (!file_exists($file)) {
+		return [];
+	}
+	
+	$lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	$tasks = [];
+	
+	foreach ($lines as $line) {
+		$parts = explode('|', $line);
+		if (count($parts) === 3) {
+			$tasks[] = [
+				'id' => $parts[0],
+				'name' => $parts[1],
+				'completed' => (bool)$parts[2]
+			];
+		}
+	}
+	
+	return $tasks;
 }
 
 /**
@@ -30,7 +62,29 @@ function getAllTasks(): array {
  */
 function markTaskAsCompleted( string $task_id, bool $is_completed ): bool {
 	$file  = __DIR__ . '/tasks.txt';
-	// TODO: Implement this function
+	
+	$tasks = getAllTasks();
+	$updated = false;
+	
+	foreach ($tasks as &$task) {
+		if ($task['id'] === $task_id) {
+			$task['completed'] = $is_completed;
+			$updated = true;
+			break;
+		}
+	}
+	
+	if (!$updated) {
+		return false;
+	}
+	
+	// Rewrite the file
+	$content = '';
+	foreach ($tasks as $task) {
+		$content .= $task['id'] . '|' . $task['name'] . '|' . ($task['completed'] ? '1' : '0') . PHP_EOL;
+	}
+	
+	return file_put_contents($file, $content, LOCK_EX) !== false;
 }
 
 /**
@@ -41,7 +95,23 @@ function markTaskAsCompleted( string $task_id, bool $is_completed ): bool {
  */
 function deleteTask( string $task_id ): bool {
 	$file  = __DIR__ . '/tasks.txt';
-	// TODO: Implement this function
+	
+	$tasks = getAllTasks();
+	$filtered_tasks = array_filter($tasks, function($task) use ($task_id) {
+		return $task['id'] !== $task_id;
+	});
+	
+	if (count($filtered_tasks) === count($tasks)) {
+		return false; // Task not found
+	}
+	
+	// Rewrite the file
+	$content = '';
+	foreach ($filtered_tasks as $task) {
+		$content .= $task['id'] . '|' . $task['name'] . '|' . ($task['completed'] ? '1' : '0') . PHP_EOL;
+	}
+	
+	return file_put_contents($file, $content, LOCK_EX) !== false;
 }
 
 /**
@@ -50,7 +120,7 @@ function deleteTask( string $task_id ): bool {
  * @return string The generated verification code.
  */
 function generateVerificationCode(): string {
-	// TODO: Implement this function
+	return sprintf('%06d', mt_rand(100000, 999999));
 }
 
 /**
