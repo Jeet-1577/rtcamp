@@ -134,7 +134,47 @@ function generateVerificationCode(): string {
  */
 function subscribeEmail( string $email ): bool {
 	$file = __DIR__ . '/pending_subscriptions.txt';
-	// TODO: Implement this function
+	
+	// Check if email is already subscribed
+	$subscribers_file = __DIR__ . '/subscribers.txt';
+	if (file_exists($subscribers_file)) {
+		$subscribers = file($subscribers_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		if (in_array($email, $subscribers)) {
+			return false; // Already subscribed
+		}
+	}
+	
+	// Check if email is already pending verification
+	if (file_exists($file)) {
+		$pending = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		foreach ($pending as $line) {
+			$parts = explode('|', $line);
+			if (count($parts) >= 2 && $parts[0] === $email) {
+				return false; // Already pending verification
+			}
+		}
+	}
+	
+	// Generate verification code
+	$code = generateVerificationCode();
+	
+	// Store pending subscription
+	$pending_data = $email . '|' . $code . '|' . time() . PHP_EOL;
+	if (file_put_contents($file, $pending_data, FILE_APPEND | LOCK_EX) === false) {
+		return false;
+	}
+	
+	// Send verification email
+	$verification_link = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . "/verify.php?email=" . urlencode($email) . "&code=" . $code;
+	
+	$subject = 'Verify subscription to Task Planner';
+	$message = '<p>Click the link below to verify your subscription to Task Planner:</p>' . PHP_EOL;
+	$message .= '<p><a id="verification-link" href="' . $verification_link . '">Verify Subscription</a></p>';
+	
+	$headers = "From: no-reply@example.com" . PHP_EOL;
+	$headers .= "Content-Type: text/html; charset=UTF-8" . PHP_EOL;
+	
+	return mail($email, $subject, $message, $headers);
 }
 
 /**
@@ -147,7 +187,35 @@ function subscribeEmail( string $email ): bool {
 function verifySubscription( string $email, string $code ): bool {
 	$pending_file     = __DIR__ . '/pending_subscriptions.txt';
 	$subscribers_file = __DIR__ . '/subscribers.txt';
-	// TODO: Implement this function
+	
+	if (!file_exists($pending_file)) {
+		return false;
+	}
+	
+	$pending_lines = file($pending_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	$found = false;
+	$updated_pending = [];
+	
+	foreach ($pending_lines as $line) {
+		$parts = explode('|', $line);
+		if (count($parts) >= 3 && $parts[0] === $email && $parts[1] === $code) {
+			$found = true;
+			// Don't add this line to updated_pending (remove it)
+		} else {
+			$updated_pending[] = $line;
+		}
+	}
+	
+	if (!$found) {
+		return false;
+	}
+	
+	// Update pending subscriptions file
+	file_put_contents($pending_file, implode(PHP_EOL, $updated_pending) . (empty($updated_pending) ? '' : PHP_EOL), LOCK_EX);
+	
+	// Add to subscribers
+	$subscriber_data = $email . PHP_EOL;
+	return file_put_contents($subscribers_file, $subscriber_data, FILE_APPEND | LOCK_EX) !== false;
 }
 
 /**
@@ -158,7 +226,21 @@ function verifySubscription( string $email, string $code ): bool {
  */
 function unsubscribeEmail( string $email ): bool {
 	$subscribers_file = __DIR__ . '/subscribers.txt';
-	// TODO: Implement this function
+	
+	if (!file_exists($subscribers_file)) {
+		return false;
+	}
+	
+	$subscribers = file($subscribers_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	$updated_subscribers = array_filter($subscribers, function($subscriber) use ($email) {
+		return trim($subscriber) !== $email;
+	});
+	
+	if (count($updated_subscribers) === count($subscribers)) {
+		return false; // Email not found
+	}
+	
+	return file_put_contents($subscribers_file, implode(PHP_EOL, $updated_subscribers) . (empty($updated_subscribers) ? '' : PHP_EOL), LOCK_EX) !== false;
 }
 
 /**
@@ -167,7 +249,26 @@ function unsubscribeEmail( string $email ): bool {
  */
 function sendTaskReminders(): void {
 	$subscribers_file = __DIR__ . '/subscribers.txt';
-	// TODO: Implement this function
+	
+	if (!file_exists($subscribers_file)) {
+		return;
+	}
+	
+	$subscribers = file($subscribers_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	$pending_tasks = array_filter(getAllTasks(), function($task) {
+		return !$task['completed'];
+	});
+	
+	if (empty($pending_tasks)) {
+		return; // No pending tasks to send
+	}
+	
+	foreach ($subscribers as $email) {
+		$email = trim($email);
+		if (!empty($email)) {
+			sendTaskEmail($email, $pending_tasks);
+		}
+	}
 }
 
 /**
@@ -179,5 +280,22 @@ function sendTaskReminders(): void {
  */
 function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$subject = 'Task Planner - Pending Tasks Reminder';
-	// TODO: Implement this function
+	
+	$unsubscribe_link = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . "/unsubscribe.php?email=" . urlencode($email);
+	
+	$message = '<h2>Pending Tasks Reminder</h2>' . PHP_EOL;
+	$message .= '<p>Here are the current pending tasks:</p>' . PHP_EOL;
+	$message .= '<ul>' . PHP_EOL;
+	
+	foreach ($pending_tasks as $task) {
+		$message .= '<li>' . htmlspecialchars($task['name']) . '</li>' . PHP_EOL;
+	}
+	
+	$message .= '</ul>' . PHP_EOL;
+	$message .= '<p><a id="unsubscribe-link" href="' . $unsubscribe_link . '">Unsubscribe from notifications</a></p>';
+	
+	$headers = "From: no-reply@example.com" . PHP_EOL;
+	$headers .= "Content-Type: text/html; charset=UTF-8" . PHP_EOL;
+	
+	return mail($email, $subject, $message, $headers);
 }

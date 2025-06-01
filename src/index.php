@@ -20,8 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	
 	if (isset($_POST['email']) && !empty(trim($_POST['email']))) {
-		// TODO: Implement email subscription
-		$email_message = 'Email subscription feature coming soon!';
+		$email = trim($_POST['email']);
+		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$result = subscribeEmail($email);
+			if ($result) {
+				$email_message = 'Verification email sent! Please check your inbox and click the verification link.';
+			} else {
+				$email_message = 'Failed to send verification email. You may already be subscribed or have a pending verification.';
+			}
+		} else {
+			$email_message = 'Please enter a valid email address.';
+		}
 	}
 }
 
