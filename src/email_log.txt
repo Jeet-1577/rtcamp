@@ -1,0 +1,48 @@
+=== EMAIL SENT ===
+Timestamp: 2025-06-01 10:32:39
+To: mr.jac1577@gmail.com
+Subject: Verify subscription to Task Planner
+Headers: From: no-reply@example.com
+Content-Type: text/html; charset=UTF-8
+
+Message:
+<p>Click the link below to verify your subscription to Task Planner:</p>
+<p><a id="verification-link" href="http://localhost:8000\/verify.php?email=mr.jac1577%40gmail.com&code=906282">Verify Subscription</a></p>
+==================
+
+=== EMAIL SENT ===
+Timestamp: 2025-06-01 10:32:53
+To: mr.jac53u33@gmail.com
+Subject: Verify subscription to Task Planner
+Headers: From: no-reply@example.com
+Content-Type: text/html; charset=UTF-8
+
+Message:
+<p>Click the link below to verify your subscription to Task Planner:</p>
+<p><a id="verification-link" href="http://localhost:8000\/verify.php?email=mr.jac53u33%40gmail.com&code=577887">Verify Subscription</a></p>
+==================
+
+=== EMAIL SENT ===
+Timestamp: 2025-06-01 10:33:04
+To: mr.jac5333@gmail.com
+Subject: Verify subscription to Task Planner
+Headers: From: no-reply@example.com
+Content-Type: text/html; charset=UTF-8
+
+Message:
+<p>Click the link below to verify your subscription to Task Planner:</p>
+<p><a id="verification-link" href="http://localhost:8000\/verify.php?email=mr.jac5333%40gmail.com&code=915606">Verify Subscription</a></p>
+==================
+
+=== EMAIL SENT ===
+Timestamp: 2025-06-02 03:45:54
+To: arjunbhatiya41@gmail.com
+Subject: Verify subscription to Task Planner
+Headers: From: no-reply@example.com
+Content-Type: text/html; charset=UTF-8
+
+Message:
+<p>Click the link below to verify your subscription to Task Planner:</p>
+<p><a id="verification-link" href="http://localhost:8000\/verify.php?email=arjunbhatiya41%40gmail.com&code=194357">Verify Subscription</a></p>
+==================
+

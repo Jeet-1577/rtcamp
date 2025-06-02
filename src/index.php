@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			$result = subscribeEmail($email);
 			if ($result) {
-				$email_message = 'Verification email sent! Please check your inbox and click the verification link.';
+				$email_message = 'Verification email sent! Please check your inbox and click the verification link. (In development: Check email_log.txt file for simulation)';
 			} else {
 				$email_message = 'Failed to send verification email. You may already be subscribed or have a pending verification.';
 			}

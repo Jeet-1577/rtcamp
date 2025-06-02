@@ -124,6 +124,53 @@ function generateVerificationCode(): string {
 }
 
 /**
+ * Simulates email sending for development environment
+ * 
+ * @param string $to Email recipient
+ * @param string $subject Email subject
+ * @param string $message Email content
+ * @param string $headers Email headers
+ * @return bool Always returns true for development
+ */
+function simulateEmailForDevelopment($to, $subject, $message, $headers) {
+	// Create a log file to simulate email sending
+	$log_file = __DIR__ . '/email_log.txt';
+	$timestamp = date('Y-m-d H:i:s');
+	
+	$email_log = "=== EMAIL SENT ===\n";
+	$email_log .= "Timestamp: {$timestamp}\n";
+	$email_log .= "To: {$to}\n";
+	$email_log .= "Subject: {$subject}\n";
+	$email_log .= "Headers: {$headers}\n";
+	$email_log .= "Message:\n{$message}\n";
+	$email_log .= "==================\n\n";
+	
+	file_put_contents($log_file, $email_log, FILE_APPEND | LOCK_EX);
+	return true;
+}
+
+/**
+ * Sends email with fallback for development environment
+ * 
+ * @param string $to Email recipient
+ * @param string $subject Email subject
+ * @param string $message Email content
+ * @param string $headers Email headers
+ * @return bool True if email sent successfully or simulated
+ */
+function sendEmail($to, $subject, $message, $headers) {
+	// Try to send real email first
+	$result = @mail($to, $subject, $message, $headers);
+	
+	// If mail fails (like in development), simulate it
+	if (!$result) {
+		return simulateEmailForDevelopment($to, $subject, $message, $headers);
+	}
+	
+	return $result;
+}
+
+/**
  * Subscribe an email address to task notifications.
  *
  * Generates a verification code, stores the pending subscription,
@@ -174,7 +221,7 @@ function subscribeEmail( string $email ): bool {
 	$headers = "From: no-reply@example.com" . PHP_EOL;
 	$headers .= "Content-Type: text/html; charset=UTF-8" . PHP_EOL;
 	
-	return mail($email, $subject, $message, $headers);
+	return sendEmail($email, $subject, $message, $headers);
 }
 
 /**
@@ -297,5 +344,5 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$headers = "From: no-reply@example.com" . PHP_EOL;
 	$headers .= "Content-Type: text/html; charset=UTF-8" . PHP_EOL;
 	
-	return mail($email, $subject, $message, $headers);
+	return sendEmail($email, $subject, $message, $headers);
 }
