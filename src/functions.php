@@ -164,7 +164,12 @@ function subscribeEmail( string $email ): bool {
 	}
 	
 	// Create verification link
-	$verification_link = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . "/verify.php?email=" . urlencode($email) . "&code=" . $code;
+    $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+    if ($script_directory === '/') {
+        $script_directory = ''; // Avoid double slash if script is in root
+    }
+    $base_url = "http://" . $_SERVER['HTTP_HOST'] . $script_directory;
+	$verification_link = $base_url . "/verify.php?email=" . urlencode($email) . "&code=" . $code;
 	
 	$subject = 'Verify subscription to Task Planner';
 	$message = '<p>Click the link below to verify your subscription to Task Planner:</p>' . PHP_EOL;
@@ -173,7 +178,7 @@ function subscribeEmail( string $email ): bool {
 	// Production-level headers for better email delivery
 	$headers = [];
 	$headers[] = "From: no-reply@example.com";
-	$headers[] = "Reply-To: no-reply@example.com";
+	$headers[] = "Reply-To: $email" ;
 	$headers[] = "Content-Type: text/html; charset=UTF-8";
 	$headers[] = "MIME-Version: 1.0";
 	$headers[] = "X-Mailer: PHP/" . phpversion();
@@ -308,7 +313,12 @@ function sendTaskReminders(): void {
 function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$subject = 'Task Planner - Pending Tasks Reminder';
 	
-	$unsubscribe_link = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . "/unsubscribe.php?email=" . urlencode($email);
+    $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+    if ($script_directory === '/') {
+        $script_directory = ''; // Avoid double slash if script is in root
+    }
+    $base_url = "http://" . $_SERVER['HTTP_HOST'] . $script_directory;
+	$unsubscribe_link = $base_url . "/unsubscribe.php?email=" . urlencode($email);
 	
 	$message = '<h2>Pending Tasks Reminder</h2>' . PHP_EOL;
 	$message .= '<p>Here are the current pending tasks:</p>' . PHP_EOL;
@@ -324,7 +334,7 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	// Production-level headers
 	$headers = [];
 	$headers[] = "From: no-reply@example.com";
-	$headers[] = "Reply-To: no-reply@example.com";
+	$headers[] = "Reply-To: $email";
 	$headers[] = "Content-Type: text/html; charset=UTF-8";
 	$headers[] = "MIME-Version: 1.0";
 	$headers[] = "X-Mailer: PHP/" . phpversion();
@@ -344,7 +354,6 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$email_log = "=== TASK REMINDER EMAIL ===\n";
 	$email_log .= "Status: {$status}\n";
 	$email_log .= "Timestamp: {$timestamp}\n";
-	$email_log .= "To: {$email}\n";
 	$email_log .= "Subject: {$subject}\n";
 	$email_log .= "Unsubscribe Link: {$unsubscribe_link}\n";
 	$email_log .= "Message:\n{$message}\n";
