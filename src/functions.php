@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * Adds a new task to the task list
  * 
@@ -124,57 +126,7 @@ function generateVerificationCode(): string {
 }
 
 /**
- * Simulates email sending for development environment
- * 
- * @param string $to Email recipient
- * @param string $subject Email subject
- * @param string $message Email content
- * @param string $headers Email headers
- * @return bool Always returns true for development
- */
-function simulateEmailForDevelopment($to, $subject, $message, $headers) {
-	// Create a log file to simulate email sending
-	$log_file = __DIR__ . '/email_log.txt';
-	$timestamp = date('Y-m-d H:i:s');
-	
-	$email_log = "=== EMAIL SENT ===\n";
-	$email_log .= "Timestamp: {$timestamp}\n";
-	$email_log .= "To: {$to}\n";
-	$email_log .= "Subject: {$subject}\n";
-	$email_log .= "Headers: {$headers}\n";
-	$email_log .= "Message:\n{$message}\n";
-	$email_log .= "==================\n\n";
-	
-	file_put_contents($log_file, $email_log, FILE_APPEND | LOCK_EX);
-	return true;
-}
-
-/**
- * Sends email with fallback for development environment
- * 
- * @param string $to Email recipient
- * @param string $subject Email subject
- * @param string $message Email content
- * @param string $headers Email headers
- * @return bool True if email sent successfully or simulated
- */
-function sendEmail($to, $subject, $message, $headers) {
-	// Try to send real email first
-	$result = @mail($to, $subject, $message, $headers);
-	
-	// If mail fails (like in development), simulate it
-	if (!$result) {
-		return simulateEmailForDevelopment($to, $subject, $message, $headers);
-	}
-	
-	return $result;
-}
-
-/**
  * Subscribe an email address to task notifications.
- *
- * Generates a verification code, stores the pending subscription,
- * and sends a verification email to the subscriber.
  *
  * @param string $email The email address to subscribe.
  * @return bool True if verification email sent successfully, false otherwise.
@@ -211,17 +163,45 @@ function subscribeEmail( string $email ): bool {
 		return false;
 	}
 	
-	// Send verification email
+	// Create verification link
 	$verification_link = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . "/verify.php?email=" . urlencode($email) . "&code=" . $code;
 	
 	$subject = 'Verify subscription to Task Planner';
 	$message = '<p>Click the link below to verify your subscription to Task Planner:</p>' . PHP_EOL;
 	$message .= '<p><a id="verification-link" href="' . $verification_link . '">Verify Subscription</a></p>';
 	
-	$headers = "From: no-reply@example.com" . PHP_EOL;
-	$headers .= "Content-Type: text/html; charset=UTF-8" . PHP_EOL;
+	// Production-level headers for better email delivery
+	$headers = [];
+	$headers[] = "From: no-reply@example.com";
+	$headers[] = "Reply-To: no-reply@example.com";
+	$headers[] = "Content-Type: text/html; charset=UTF-8";
+	$headers[] = "MIME-Version: 1.0";
+	$headers[] = "X-Mailer: PHP/" . phpversion();
+	$headers[] = "X-Priority: 3";
+	$headers[] = "Return-Path: no-reply@example.com";
 	
-	return sendEmail($email, $subject, $message, $headers);
+	$header_string = implode("\r\n", $headers);
+	
+	// Send email using PHP's mail function with proper configuration
+	$result = mail($email, $subject, $message, $header_string);
+	
+	// Log the attempt
+	$log_file = __DIR__ . '/email_log.txt';
+	$timestamp = date('Y-m-d H:i:s');
+	$status = $result ? "SUCCESS" : "FAILED";
+	
+	$email_log = "=== EMAIL ATTEMPT ===\n";
+	$email_log .= "Status: {$status}\n";
+	$email_log .= "Timestamp: {$timestamp}\n";
+	$email_log .= "To: {$email}\n";
+	$email_log .= "Subject: {$subject}\n";
+	$email_log .= "Verification Link: {$verification_link}\n";
+	$email_log .= "Message:\n{$message}\n";
+	$email_log .= "=====================\n\n";
+	
+	file_put_contents($log_file, $email_log, FILE_APPEND | LOCK_EX);
+	
+	return $result;
 }
 
 /**
@@ -341,8 +321,36 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$message .= '</ul>' . PHP_EOL;
 	$message .= '<p><a id="unsubscribe-link" href="' . $unsubscribe_link . '">Unsubscribe from notifications</a></p>';
 	
-	$headers = "From: no-reply@example.com" . PHP_EOL;
-	$headers .= "Content-Type: text/html; charset=UTF-8" . PHP_EOL;
+	// Production-level headers
+	$headers = [];
+	$headers[] = "From: no-reply@example.com";
+	$headers[] = "Reply-To: no-reply@example.com";
+	$headers[] = "Content-Type: text/html; charset=UTF-8";
+	$headers[] = "MIME-Version: 1.0";
+	$headers[] = "X-Mailer: PHP/" . phpversion();
+	$headers[] = "X-Priority: 3";
+	$headers[] = "Return-Path: no-reply@example.com";
 	
-	return sendEmail($email, $subject, $message, $headers);
+	$header_string = implode("\r\n", $headers);
+	
+	// Send email using PHP's mail function
+	$result = mail($email, $subject, $message, $header_string);
+	
+	// Log the attempt
+	$log_file = __DIR__ . '/email_log.txt';
+	$timestamp = date('Y-m-d H:i:s');
+	$status = $result ? "SUCCESS" : "FAILED";
+	
+	$email_log = "=== TASK REMINDER EMAIL ===\n";
+	$email_log .= "Status: {$status}\n";
+	$email_log .= "Timestamp: {$timestamp}\n";
+	$email_log .= "To: {$email}\n";
+	$email_log .= "Subject: {$subject}\n";
+	$email_log .= "Unsubscribe Link: {$unsubscribe_link}\n";
+	$email_log .= "Message:\n{$message}\n";
+	$email_log .= "===========================\n\n";
+	
+	file_put_contents($log_file, $email_log, FILE_APPEND | LOCK_EX);
+	
+	return $result;
 }

@@ -1,3 +1,2 @@
-// Store the data in JSON format. -- Single entry format : { email: { code: 'xxxxx' } }
-mr.jac1577@gmail.com|906282|1748766757
-mr.jac53u33@gmail.com|577887|1748766771
+mr.jac5333@gmail.com|250363|1748838534
+mr.jac1577@gmail.com|893187|1748838545

@@ -22,14 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['email']) && !empty(trim($_POST['email']))) {
 		$email = trim($_POST['email']);
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			error_log("DEBUG: Processing email subscription for: " . $email);
 			$result = subscribeEmail($email);
 			if ($result) {
-				$email_message = 'Verification email sent! Please check your inbox and click the verification link. (In development: Check email_log.txt file for simulation)';
+				$email_message = 'Verification email sent successfully! Please check your inbox and click the verification link.';
+				error_log("DEBUG: Subscription successful for: " . $email);
 			} else {
 				$email_message = 'Failed to send verification email. You may already be subscribed or have a pending verification.';
+				error_log("DEBUG: Subscription failed for: " . $email);
 			}
 		} else {
 			$email_message = 'Please enter a valid email address.';
+			error_log("DEBUG: Invalid email format: " . $email);
 		}
 	}
 }
