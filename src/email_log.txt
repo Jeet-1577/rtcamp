@@ -1,22 +1,517 @@
 === EMAIL ATTEMPT ===
 Status: SUCCESS
-Timestamp: 2025-06-02 09:12:40
-To: mr.rajput1577@gmail.com
+Timestamp: 2025-06-03 06:20:50
+To: mr.jac5333@gmail.com
 Subject: Verify subscription to Task Planner
-Verification Link: http://localhost:8000/verify.php?email=mr.rajput1577%40gmail.com&code=917618
+Verification Link: http://localhost:8000/verify.php?email=mr.jac5333%40gmail.com&code=891832
 Message:
 <p>Click the link below to verify your subscription to Task Planner:</p>
-<p><a id="verification-link" href="http://localhost:8000/verify.php?email=mr.rajput1577%40gmail.com&code=917618">Verify Subscription</a></p>
+<p><a id="verification-link" href="http://localhost:8000/verify.php?email=mr.jac5333%40gmail.com&code=891832">Verify Subscription</a></p>
 =====================
 
 === EMAIL ATTEMPT ===
 Status: SUCCESS
-Timestamp: 2025-06-02 09:14:15
-To: mr.jac5333@gmail.com
+Timestamp: 2025-06-03 06:21:01
+To: mr.jac1577@gmail.com
 Subject: Verify subscription to Task Planner
-Verification Link: http://localhost:8000/verify.php?email=mr.jac5333%40gmail.com&code=581847
+Verification Link: http://localhost:8000/verify.php?email=mr.jac1577%40gmail.com&code=554431
 Message:
 <p>Click the link below to verify your subscription to Task Planner:</p>
-<p><a id="verification-link" href="http://localhost:8000/verify.php?email=mr.jac5333%40gmail.com&code=581847">Verify Subscription</a></p>
+<p><a id="verification-link" href="http://localhost:8000/verify.php?email=mr.jac1577%40gmail.com&code=554431">Verify Subscription</a></p>
 =====================
+
+=== TASK REMINDER EMAIL ===
+Status: SUCCESS
+Timestamp: 2025-06-03 10:13:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: SUCCESS
+Timestamp: 2025-06-03 10:14:02
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: SUCCESS
+Timestamp: 2025-06-03 10:15:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: SUCCESS
+Timestamp: 2025-06-03 10:16:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: SUCCESS
+Timestamp: 2025-06-03 10:17:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:18:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:19:11
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:20:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:21:02
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:22:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:23:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:24:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:25:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:26:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:26:01
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:27:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:27:01
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:28:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:28:01
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:29:01
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:29:01
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:30:02
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:30:02
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:31:03
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:31:04
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:32:03
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:32:04
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:33:03
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:33:04
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:34:03
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:34:04
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:35:04
+To: mr.jac1577@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac1577%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
+
+=== TASK REMINDER EMAIL ===
+Status: FAILED
+Timestamp: 2025-06-03 10:35:06
+To: mr.jac5333@gmail.com
+Subject: Task Planner - Pending Tasks Reminder
+Unsubscribe Link: http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com
+Message:
+<h2>Pending Tasks Reminder</h2>
+<p>Here are the current pending tasks:</p>
+<ul>
+<li>gh</li>
+</ul>
+<p><a id="unsubscribe-link" href="http://localhost:8000/unsubscribe.php?email=mr.jac5333%40gmail.com">Unsubscribe from notifications</a></p>
+===========================
 

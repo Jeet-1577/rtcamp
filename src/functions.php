@@ -132,6 +132,9 @@ function generateVerificationCode(): string {
  * @return bool True if verification email sent successfully, false otherwise.
  */
 function subscribeEmail( string $email ): bool {
+	// Include mail configuration
+	require_once __DIR__ . '/php_mail_config.php';
+	
 	$file = __DIR__ . '/pending_subscriptions.txt';
 	
 	// Check if email is already subscribed
@@ -311,6 +314,9 @@ function sendTaskReminders(): void {
  * @return bool True if email was sent successfully, false otherwise.
  */
 function sendTaskEmail( string $email, array $pending_tasks ): bool {
+	// Include mail configuration
+	require_once __DIR__ . '/php_mail_config.php';
+	
 	$subject = 'Task Planner - Pending Tasks Reminder';
 	
     $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
@@ -354,6 +360,7 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$email_log = "=== TASK REMINDER EMAIL ===\n";
 	$email_log .= "Status: {$status}\n";
 	$email_log .= "Timestamp: {$timestamp}\n";
+	$email_log .= "To: {$email}\n";
 	$email_log .= "Subject: {$subject}\n";
 	$email_log .= "Unsubscribe Link: {$unsubscribe_link}\n";
 	$email_log .= "Message:\n{$message}\n";
