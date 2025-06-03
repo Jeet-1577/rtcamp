@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/php_mail_config.php'; // Add this line
 require_once 'functions.php';
 
 // Handle form submissions

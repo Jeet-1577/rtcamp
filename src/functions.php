@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/config.php'; // Include the new config file
 
 
 
@@ -164,11 +165,18 @@ function subscribeEmail( string $email ): bool {
 	}
 	
 	// Create verification link
-    $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-    if ($script_directory === '/') {
-        $script_directory = ''; // Avoid double slash if script is in root
+    // Use APP_URL if HTTP_HOST is not set (e.g., CLI context)
+    if (isset($_SERVER['HTTP_HOST'])) {
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        if ($script_directory === '/') {
+            $script_directory = ''; // Avoid double slash if script is in root
+        }
+        $base_url = $scheme . "://" . $_SERVER['HTTP_HOST'] . $script_directory;
+    } else {
+        // Use predefined APP_URL for CLI context
+        $base_url = APP_URL;
     }
-    $base_url = "http://" . $_SERVER['HTTP_HOST'] . $script_directory;
 	$verification_link = $base_url . "/verify.php?email=" . urlencode($email) . "&code=" . $code;
 	
 	$subject = 'Verify subscription to Task Planner';
@@ -178,7 +186,7 @@ function subscribeEmail( string $email ): bool {
 	// Production-level headers for better email delivery
 	$headers = [];
 	$headers[] = "From: no-reply@example.com";
-	$headers[] = "Reply-To: $email" ;
+	$headers[] = "Reply-To: no-reply@example.com"; // Changed from $email
 	$headers[] = "Content-Type: text/html; charset=UTF-8";
 	$headers[] = "MIME-Version: 1.0";
 	$headers[] = "X-Mailer: PHP/" . phpversion();
@@ -313,11 +321,18 @@ function sendTaskReminders(): void {
 function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$subject = 'Task Planner - Pending Tasks Reminder';
 	
-    $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-    if ($script_directory === '/') {
-        $script_directory = ''; // Avoid double slash if script is in root
+    // Use APP_URL if HTTP_HOST is not set (e.g., CLI context)
+    if (isset($_SERVER['HTTP_HOST'])) {
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+        if ($script_directory === '/') {
+            $script_directory = ''; // Avoid double slash if script is in root
+        }
+        $base_url = $scheme . "://" . $_SERVER['HTTP_HOST'] . $script_directory;
+    } else {
+        // Use predefined APP_URL for CLI context
+        $base_url = APP_URL;
     }
-    $base_url = "http://" . $_SERVER['HTTP_HOST'] . $script_directory;
 	$unsubscribe_link = $base_url . "/unsubscribe.php?email=" . urlencode($email);
 	
 	$message = '<h2>Pending Tasks Reminder</h2>' . PHP_EOL;
@@ -334,7 +349,7 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	// Production-level headers
 	$headers = [];
 	$headers[] = "From: no-reply@example.com";
-	$headers[] = "Reply-To: $email";
+	$headers[] = "Reply-To: no-reply@example.com"; // This was already correct
 	$headers[] = "Content-Type: text/html; charset=UTF-8";
 	$headers[] = "MIME-Version: 1.0";
 	$headers[] = "X-Mailer: PHP/" . phpversion();
@@ -354,6 +369,7 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$email_log = "=== TASK REMINDER EMAIL ===\n";
 	$email_log .= "Status: {$status}\n";
 	$email_log .= "Timestamp: {$timestamp}\n";
+	$email_log .= "To: {$email}\n";
 	$email_log .= "Subject: {$subject}\n";
 	$email_log .= "Unsubscribe Link: {$unsubscribe_link}\n";
 	$email_log .= "Message:\n{$message}\n";

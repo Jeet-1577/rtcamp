@@ -1,10 +1,5 @@
 <?php
-// This file might exist if php_mail_config.php was created and used for runtime ini_set
-// If it's not strictly needed for unsubscribe.php and functions.php handles mail config, it can be omitted.
-// For consistency with index.php and cron.php, we can include it if it sets up error logging.
-if (file_exists(__DIR__ . '/php_mail_config.php')) {
-    require_once __DIR__ . '/php_mail_config.php';
-}
+require_once __DIR__ . '/php_mail_config.php'; // Add this line
 require_once 'functions.php';
 
 $message = '';
