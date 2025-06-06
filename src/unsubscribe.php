@@ -1,10 +1,4 @@
 <?php
-// This file might exist if php_mail_config.php was created and used for runtime ini_set
-// If it's not strictly needed for unsubscribe.php and functions.php handles mail config, it can be omitted.
-// For consistency with index.php and cron.php, we can include it if it sets up error logging.
-if (file_exists(__DIR__ . '/php_mail_config.php')) {
-    require_once __DIR__ . '/php_mail_config.php';
-}
 require_once 'functions.php';
 
 $message = '';
@@ -18,13 +12,13 @@ if (isset($_GET['email'])) {
             $message = 'You have been successfully unsubscribed from task reminders.';
             $success = true;
         } else {
-            $message = 'Failed to unsubscribe. Your email address was not found in our subscriber list, or an error occurred.';
+            $message = 'Unsubscribe failed. You may not be subscribed or the email was not found.';
         }
     } else {
-        $message = 'Invalid email address provided for unsubscription.';
+        $message = 'Invalid email address provided.';
     }
 } else {
-    $message = 'Unsubscribe link is incomplete. Please use the link provided in the email.';
+    $message = 'Invalid unsubscribe link. No email address provided.';
 }
 ?>
 <!DOCTYPE html>
@@ -38,14 +32,22 @@ if (isset($_GET['email'])) {
         .message { padding: 20px; margin-bottom: 20px; border-radius: 5px; }
         .success { background-color: #e8f5e8; border: 1px solid #4caf50; color: #2e7d32; }
         .error { background-color: #ffeaea; border: 1px solid #f44336; color: #c62828; }
-        a.button { display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+        a.button { display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+        a.button:hover { background-color: #0056b3; }
     </style>
 </head>
 <body>
-    <h1>Unsubscribe</h1>
+    <h1>Unsubscribe from Task Scheduler</h1>
+    
     <div class="message <?php echo $success ? 'success' : 'error'; ?>">
         <?php echo htmlspecialchars($message); ?>
     </div>
+    
+    <?php if ($success): ?>
+        <p>You will no longer receive task reminder emails.</p>
+        <p>If you change your mind, you can always subscribe again on our main page.</p>
+    <?php endif; ?>
+    
     <a href="index.php" class="button">Back to Task Scheduler</a>
 </body>
 </html>

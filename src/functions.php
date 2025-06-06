@@ -65,12 +65,17 @@ function getAllTasks(): array {
 function markTaskAsCompleted( string $task_id, bool $is_completed ): bool {
 	$file  = __DIR__ . '/tasks.txt';
 	
+	if (!file_exists($file)) {
+		return false;
+	}
+	
 	$tasks = getAllTasks();
 	$updated = false;
 	
-	foreach ($tasks as &$task) {
-		if ($task['id'] === $task_id) {
-			$task['completed'] = $is_completed;
+	// Find and update the specific task
+	for ($i = 0; $i < count($tasks); $i++) {
+		if ($tasks[$i]['id'] === $task_id) {
+			$tasks[$i]['completed'] = $is_completed;
 			$updated = true;
 			break;
 		}
@@ -80,10 +85,11 @@ function markTaskAsCompleted( string $task_id, bool $is_completed ): bool {
 		return false;
 	}
 	
-	// Rewrite the file
+	// Rewrite the entire file with updated tasks
 	$content = '';
 	foreach ($tasks as $task) {
-		$content .= $task['id'] . '|' . $task['name'] . '|' . ($task['completed'] ? '1' : '0') . PHP_EOL;
+		$completed_value = $task['completed'] ? '1' : '0';
+		$content .= $task['id'] . '|' . $task['name'] . '|' . $completed_value . PHP_EOL;
 	}
 	
 	return file_put_contents($file, $content, LOCK_EX) !== false;
@@ -160,8 +166,8 @@ function subscribeEmail( string $email ): bool {
 	// Generate verification code
 	$code = generateVerificationCode();
 	
-	// Store pending subscription
-	$pending_data = $email . '|' . $code . '|' . time() . PHP_EOL;
+	// Store pending subscription (only email and 6-digit code as per README)
+	$pending_data = $email . '|' . $code . PHP_EOL;
 	if (file_put_contents($file, $pending_data, FILE_APPEND | LOCK_EX) === false) {
 		return false;
 	}
@@ -233,7 +239,7 @@ function verifySubscription( string $email, string $code ): bool {
 	
 	foreach ($pending_lines as $line) {
 		$parts = explode('|', $line);
-		if (count($parts) >= 3 && $parts[0] === $email && $parts[1] === $code) {
+		if (count($parts) >= 2 && $parts[0] === $email && $parts[1] === $code) {
 			$found = true;
 			// Don't add this line to updated_pending (remove it)
 		} else {
