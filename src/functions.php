@@ -166,7 +166,7 @@ function subscribeEmail( string $email ): bool {
 	// Generate verification code
 	$code = generateVerificationCode();
 	
-	// Store pending subscription (only email and 6-digit code as per README)
+	// Store pending subscription 
 	$pending_data = $email . '|' . $code . PHP_EOL;
 	if (file_put_contents($file, $pending_data, FILE_APPEND | LOCK_EX) === false) {
 		return false;
@@ -175,7 +175,7 @@ function subscribeEmail( string $email ): bool {
 	// Create verification link
     $script_directory = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
     if ($script_directory === '/') {
-        $script_directory = ''; // Avoid double slash if script is in root
+        $script_directory = ''; 
     }
     $base_url = "http://" . $_SERVER['HTTP_HOST'] . $script_directory;
 	$verification_link = $base_url . "/verify.php?email=" . urlencode($email) . "&code=" . $code;
@@ -184,7 +184,6 @@ function subscribeEmail( string $email ): bool {
 	$message = '<p>Click the link below to verify your subscription to Task Planner:</p>' . PHP_EOL;
 	$message .= '<p><a id="verification-link" href="' . $verification_link . '">Verify Subscription</a></p>';
 	
-	// Production-level headers for better email delivery
 	$headers = [];
 	$headers[] = "From: no-reply@example.com";
 	$headers[] = "Reply-To: $email" ;
@@ -343,7 +342,6 @@ function sendTaskEmail( string $email, array $pending_tasks ): bool {
 	$message .= '</ul>' . PHP_EOL;
 	$message .= '<p><a id="unsubscribe-link" href="' . $unsubscribe_link . '">Unsubscribe from notifications</a></p>';
 	
-	// Production-level headers
 	$headers = [];
 	$headers[] = "From: no-reply@example.com";
 	$headers[] = "Reply-To: $email";

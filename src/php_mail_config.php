@@ -1,5 +1,4 @@
 <?php
-// Mail configuration for Mailpit (both local development and GitHub Actions)
 
 // Ensure PHP errors are logged
 ini_set('log_errors', 1);
